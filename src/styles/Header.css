@@ -1,0 +1,57 @@
+/* App header */
+.App-header {
+    min-height: 20vh;
+    max-width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    margin: auto;
+    padding: 0;
+}
+
+/* App logo + name */
+.brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vh;
+}
+
+.brand h1 {
+    color: #ffffff;
+    font-size: 6vh;
+    letter-spacing: -0.3vh;
+}
+
+.brand .App-logo {
+    height: 8vh;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .brand .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Login Github button */
+.button-github {
+    height: 6vh;
+    width: 25vh;
+}
+
+.git-logo {
+    height: 100%;
+}

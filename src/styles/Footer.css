@@ -1,0 +1,62 @@
+/* App footer */
+.App-footer {
+    min-height: 10vh;
+    max-width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    margin: auto;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 2.3vh;
+    font-weight: 500;
+}
+
+.contacts-left,
+.links-right {
+    display: flex;
+}
+
+.footer-button {
+    display: flex;
+    flex-direction: row;
+    margin-right: 15px;
+}
+
+.git-logo {
+    height: 3vh;
+    margin-right: 5px;
+}
+
+.jcuencagento {
+    display: flex;
+    align-items: center;
+}
+
+.jcuencagento img {
+    height: 3vh;
+    width: auto;
+    margin-right: 5px;
+}
+
+.jcuencagento p {
+    margin: 0;
+    padding-top: 5px;
+    font-size: 2vh;
+    font-weight: 400;
+}
+
+.App-footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-button:hover a {
+    color: rgb(255, 203, 91);
+}
