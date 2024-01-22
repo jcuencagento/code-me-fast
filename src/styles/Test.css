@@ -1,0 +1,26 @@
+.container {
+    max-width: 70%;
+    gap: 2vh;
+}
+
+.sentences {
+    max-width: 100%;
+    background-color:gainsboro;
+    border-radius: 2vh;
+    opacity: 0.6;
+    padding: 2%;
+    margin: 10% 2% 2% 2%;
+}
+
+p {
+    color: rgb(0, 0, 0);
+    font-size: 3.3vh;
+    font-weight: 400;
+}
+
+.buttons {
+    display: flex;
+    gap: 2%;
+    align-items: center;
+    justify-content: center;
+}
