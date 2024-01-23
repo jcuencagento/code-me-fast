@@ -23,7 +23,7 @@ function Footer () {
                     <CodeIcon className="mr-2 h-4 w-4" /> Code  
                 </Button>
             </div>
-            <Badge variant="secondary" className="text-lg">
+            <Badge>
                 <img src={logo} className="mr-4 h-5 w-6" alt="logo" /> Made with 🧠 by Javier Cuenca Gento
             </Badge>
             <div className="links-right">

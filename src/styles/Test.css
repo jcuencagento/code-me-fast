@@ -1,26 +1,47 @@
 .container {
     max-width: 70%;
-    gap: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    margin-top: 2%;
+    align-items: center;
+    justify-content: center;
+}
+
+.counters {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .sentences {
-    max-width: 100%;
+    width: 90%;
     background-color:gainsboro;
     border-radius: 2vh;
     opacity: 0.6;
     padding: 2%;
-    margin: 10% 2% 2% 2%;
+    margin: 1%;
+    display: inline-block;
 }
 
 p {
     color: rgb(0, 0, 0);
     font-size: 3.3vh;
     font-weight: 400;
+    white-space: pre-line;
 }
 
 .buttons {
     display: flex;
-    gap: 2%;
+    gap: 4%;
+    align-items: center;
+    justify-content: center;
+}
+
+.finish {
+    width: 60%;
+    margin-top: 2%;
     align-items: center;
     justify-content: center;
 }
