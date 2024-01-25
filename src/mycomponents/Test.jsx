@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Test.css'
 
-import { PlayIcon, ResetIcon, ClockIcon, RocketIcon, KeyboardIcon, StopIcon } from "@radix-ui/react-icons";
+import { PlayIcon, ResetIcon, ClockIcon, RocketIcon, KeyboardIcon, StopIcon, StarFilledIcon } from "@radix-ui/react-icons";
  
-import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert"
-import { Badge } from "../components/ui/badge";
+import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "../components/ui/hover-card";
+import { toast } from "sonner"
 
 import texts from '../assets/texts.json'
 
@@ -16,6 +17,7 @@ function Test () {
     const [gameDuration, setGameDuration] = useState(60);
     const [gameTextType, setGameTextType] = useState('JavaScript');
     const [gameText, setGameText] = useState(texts[gameTextType][Math.floor(Math.random() * 60)]);
+    const [nextGameText, setNextGameText] = useState(texts[gameTextType][Math.floor(Math.random() * 60)]);
     const [seconds, setSeconds] = useState(gameDuration);
     const [isActive, setIsActive] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,9 +41,11 @@ function Test () {
                             setTotalCorrectChars((prevTotalCorrectChars) => prevTotalCorrectChars + 1);
                             setCurrentIndex((currentIndex) => currentIndex + 1);
                             if (currentIndex === gameText.length - 1) {
-                                setGameText(texts[gameTextType][Math.floor(Math.random() * 30)]);
+                                setGameText(nextGameText);
+                                setNextGameText(texts[gameTextType][Math.floor(Math.random() * 60)])
                                 setCurrentIndex(0);
                                 setIncorrectChars(0);
+                                toast('Finished!');
                             }
 
                         break;
@@ -69,7 +73,10 @@ function Test () {
                             setCurrentIndex((currentIndex) => currentIndex + 1);
                             setLastCorrect(true);
                             if (currentIndex === gameText.length - 1) {
-                                setIsActive(false);
+                                setGameText(nextGameText);
+                                setNextGameText(texts[gameTextType][Math.floor(Math.random() * 60)])
+                                setCurrentIndex(0);
+                                setIncorrectChars(0);
                             }
  
                         break;
@@ -100,7 +107,7 @@ function Test () {
         return () => {
             document.removeEventListener('keydown', handleKeyPress);
         };
-    }, [isActive, currentIndex, gameText, gameType, gameTextType]);
+    }, [isActive, currentIndex, gameText, gameType, gameTextType, nextGameText]);
 
     /* Texts formatting */
     const getHighlightedTextStrict = (currentIndex) => {
@@ -113,8 +120,20 @@ function Test () {
             <>
                 <span style={{ color: 'green' }}>{correctText}</span>
                 <span style={{ borderRadius: '0.5vh', backgroundColor: 'red' }}>{incorrectText}</span>
-                <span style={isActive ? { borderRadius: '0.5vh', backgroundColor: 'grey' } : {}}>{currentChar}</span>
+                <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'pre-wrap' }}>
+                <span style={{ display: 'inline-block'}}>{currentChar}</span>
+                <span style={{
+                        position: 'absolute',
+                        left: '-1px',
+                        height: '100%',
+                        width: '0.4vh',
+                        background: 'dodgerblue',
+                        animation: 'blinking 1s infinite'
+                    }}/>
+                </span>
                 {remainingText}
+                <br />
+                <span style={{ opacity: '0.7' }}>{nextGameText}</span>
             </>
         );
     };
@@ -131,8 +150,20 @@ function Test () {
                 <span style={lastCorrect ? { color: 'green' } : { color: 'red'}}>
                     {prevChar}
                 </span>
-                <span style={isActive ? { borderRadius: '0.5vh', backgroundColor: 'grey' } : {}}>{currentChar}</span>
+                <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'pre-wrap' }}>
+                <span style={{ display: 'inline-block'}}>{currentChar}</span>
+                <span style={{
+                        position: 'absolute',
+                        left: '-1px',
+                        height: '100%',
+                        width: '0.4vh',
+                        background: 'dodgerblue',
+                        animation: 'blinking 1s infinite'
+                    }}/>
+                </span>
                 {remainingText}
+                <br />
+                <span style={{ opacity: '0.7' }}>{nextGameText}</span>
             </>
         );
     };
@@ -198,7 +229,8 @@ function Test () {
   
     const resetTimer = () => {
         setIsActive(false);
-        setGameText(texts[gameTextType][Math.floor(Math.random() * 30)]);
+        setGameText(texts[gameTextType][Math.floor(Math.random() * 60)]);
+        setNextGameText(texts[gameTextType][Math.floor(Math.random() * 60)]);
         setSeconds(gameDuration);
         setCurrentIndex(0);
         setTotalCorrectChars(0);
@@ -228,7 +260,8 @@ function Test () {
 
     const handleGameTextType = (value) => {
         setGameTextType(value);
-        setGameText(texts[value][Math.floor(Math.random() * 30)]);
+        setGameText(texts[value][Math.floor(Math.random() * 60)]);
+        setNextGameText(texts[value][Math.floor(Math.random() * 60)]);
         setIsActive(false);
         setSeconds(gameDuration);
         setCurrentIndex(0);
@@ -287,13 +320,43 @@ function Test () {
                 </DropdownMenu>
                 {gameDuration !== 'Inf' 
                     ? (
-                        <Badge variant={wpm > 0 ? wpm > 40 ? "great" : "improve" : "secondary"} className="text-xl">
-                            <KeyboardIcon className="mr-2 h-8 w-8" /> {wpm} WPM
-                        </Badge>
+                        <HoverCard asChild>
+                            <HoverCardTrigger asChild>
+                                <Button variant={wpm > 0 ? wpm > 40 ? "great" : "improve" : "wpm"} className="text-xl">
+                                    <KeyboardIcon className="mr-2 h-8 w-8" /> {wpm} WPM
+                                </Button>
+                            </HoverCardTrigger>
+                            <HoverCardContent className="w-80">
+                                <div className="flex justify-around">
+                                    <StarFilledIcon className="h-6 w-6 opacity-70" />
+                                    <h4 className="text-base font-bold">Words per minute</h4>
+                                </div>
+                                <div className="flex-col mt-2">
+                                    <p className="text-sm">🟠 <strong>You can improve</strong> → 0 to 25</p>
+                                    <p className="text-sm">🟢 <strong>Really good work</strong> → 25 to 50</p>
+                                    <p className="text-sm">🔵 <strong>Amazing typing</strong> → 50 or more</p>
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
                     ) : (
-                        <Badge variant={wpm > 0 ? "great" : "secondary"} className="text-xl">
-                            <KeyboardIcon className="mr-2 h-8 w-8" /> {wpm} Chars
-                        </Badge>
+                        <HoverCard asChild>
+                            <HoverCardTrigger asChild>
+                                <Button variant={wpm > 0 ? "great" : "wpm"} className="text-xl">
+                                    <KeyboardIcon className="mr-2 h-8 w-8" /> {wpm} Chars
+                                </Button>
+                            </HoverCardTrigger>
+                            <HoverCardContent className="w-80">
+                                <div className="flex justify-around space-x-2">
+                                    <StarFilledIcon className="h-4 w-4 opacity-70" />
+                                    <h4 className="text-base font-bold">Total characters</h4>
+                                    </div>
+                                <div className="flex-col mt-2">
+                                    <p className="text-sm">When typing with no time,</p>
+                                    <p className="text-sm">you will see number of correct chars...</p>
+                                    <p className="text-sm font-semibold">For WPM, play 30, 60 or 120 seconds!</p>
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
                     )}
             </div>
             <div className="sentences">
@@ -320,7 +383,7 @@ function Test () {
                     <ResetIcon className="mr-2 h-5 w-5" /> RESET
                 </Button>
             </div>
-            {seconds === 0 || currentIndex === gameText.length
+            {seconds === 0
                 ? <div className="finish">
                     <Alert variant={wpm > 40 ? "great" : "improve"}>
                         <RocketIcon className="h-8 w-8" />

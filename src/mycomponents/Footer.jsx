@@ -1,9 +1,7 @@
 import React from 'react';
 
 import '../styles/Footer.css'
-import logo from '../logo.svg';
 import { GitHubLogoIcon, LinkedInLogoIcon, IdCardIcon, LockClosedIcon, CodeIcon } from "@radix-ui/react-icons";
-import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 
 function Footer () {
@@ -23,9 +21,7 @@ function Footer () {
                     <CodeIcon className="mr-2 h-4 w-4" /> Code  
                 </Button>
             </div>
-            <Badge>
-                <img src={logo} className="mr-4 h-5 w-6" alt="logo" /> Made with 🧠 by Javier Cuenca Gento
-            </Badge>
+            <p style={{ color: 'white', fontSize: '0.7em' }}> Made with 🧠 by Javier Cuenca Gento </p>
             <div className="links-right">
                 <Button variant="ghost" onClick={() => { window.open(linkedin_URL, '_blank') }}>
                     <LinkedInLogoIcon className="mr-2 h-4 w-4" /> Linkedin  
