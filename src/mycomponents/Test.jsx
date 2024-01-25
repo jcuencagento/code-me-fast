@@ -32,12 +32,7 @@ function Test () {
                 event.preventDefault();
             }
 
-            if (!isActive && (event.key === text[0] || event.key === 'Enter')) {
-                setIsActive(true);
-            }
-
             if (isActive) {
-
                 if (gameType === 'Strict mode') {
                     const currentChar = text[currentIndex];
                     switch (event.key) {
@@ -76,6 +71,14 @@ function Test () {
                             }
                             break;
                     }
+                }
+            }
+
+            if (!isActive && (event.key === text[0] || event.key === 'Enter')) {
+                setIsActive(true);
+                if (event.key === text[0]) {
+                    setCorrectChars((prevCorrectChars) => prevCorrectChars + 1);
+                    setCurrentIndex((currentIndex) => currentIndex + 1);
                 }
             }
         };
