@@ -17,3 +17,10 @@
     font-size: 2.3vh;
     font-weight: 500;
 }
+
+@media (max-width: 1420px) {
+    .App-footer {
+        max-width: 90%;
+        font-size: 2vh;
+    }
+}
