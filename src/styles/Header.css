@@ -8,6 +8,7 @@
     justify-content: space-between;
     font-size: calc(10px + 2vmin);
     color: white;
+    opacity: 80%;
     margin: auto;
     padding: 0;
 }

@@ -6,21 +6,23 @@ import { PlayIcon, ResetIcon, ClockIcon, RocketIcon, KeyboardIcon } from "@radix
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert"
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
+  
 
 function Test () {
     /*const text_code = `function helloWorld(name) {\n
         console.log('Hello world, I am', name);\n
     };`;*/
 
-    const text = `Lorem ipsu{ [m dolor sit am;et conse,ctetur adipiscing elit et, purus quam felis suspendisse sed mus taciti fringilla, elementum rutrum tincidunt montes dictumst facilisi enim.
-Est tincidunt magna ut non diam aliquet ante fermentum fames mus luctus nullam, ornare porttitor nec sem habitasse feugiat duis interdum mollis nisi facilisi. 
-Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendisse porttitor cum ante venenatis commodo torquent eu, felis nam enim.`;
+    const text = `Lorem ipsu{ [m dolor sit am;et conse,ctetur adipiscing elit et, purus quam felis suspendisse sed mus taciti fringilla, elementum rutrum tincidunt montes dictumst facilisi enim. Est tincidunt magna ut non diam aliquet ante fermentum fames mus luctus nullam, ornare porttitor nec sem habitasse feugiat duis interdum mollis nisi facilisi. Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendisse porttitor cum ante venenatis commodo torquent eu, felis nam enim.`;
 
+    const [gameType, setGameType] = useState('Strict mode');
     const [seconds, setSeconds] = useState(60);
     const [isActive, setIsActive] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [correctChars, setCorrectChars] = useState(0);
     const [incorrectChars, setIncorrectChars] = useState(0);
+    const [lastCorrect, setLastCorrect] = useState(true);
     const [wpm, setWPM] = useState(0);
   
     /* Key press */
@@ -35,25 +37,45 @@ Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendiss
             }
 
             if (isActive) {
-                const currentChar = text[currentIndex];
-                switch (event.key) {
-                    case currentChar:
-                        setCorrectChars((prevCorrectChars) => prevCorrectChars + 1);
-                        setCurrentIndex((prevIndex) => prevIndex + 1);
-                        break;
 
-                    case 'Backspace':
-                        if (currentIndex > 0) {
-                            setIncorrectChars((prevIncorrectChars) => (prevIncorrectChars > 0 ? prevIncorrectChars - 1 : 0));
-                        }
-                        break;
+                if (gameType === 'Strict mode') {
+                    const currentChar = text[currentIndex];
+                    switch (event.key) {
+                        case currentChar:
+                            setCorrectChars((prevCorrectChars) => prevCorrectChars + 1);
+                            setCurrentIndex((currentIndex) => currentIndex + 1);
+                            break;
 
-                    default:
-                        const alphanumeric = /^[a-zA-Z0-9\s.\n{}[\]]$/;
-                        if (alphanumeric.test(event.key)) {
-                            setIncorrectChars((prevIncorrectChars) => prevIncorrectChars + 1);
-                        }
-                        break;
+                        case 'Backspace':
+                            if (currentIndex > 0) {
+                                setIncorrectChars((prevIncorrectChars) => (prevIncorrectChars > 0 ? prevIncorrectChars - 1 : 0));
+                            }
+                            break;
+
+                        default:
+                            const alphanumeric = /^[a-zA-Z0-9\s.\n{}[\]]$/;
+                            if (alphanumeric.test(event.key)) {
+                                setIncorrectChars((prevIncorrectChars) => prevIncorrectChars + 1);
+                            }
+                            break;
+                    }
+                } else {
+                    const currentChar = text[currentIndex];
+                    switch (event.key) {
+                        case currentChar:
+                            setCorrectChars((prevCorrectChars) => prevCorrectChars + 1);
+                            setCurrentIndex((currentIndex) => currentIndex + 1);
+                            setLastCorrect(true);
+                            break;
+
+                        default:
+                            const alphanumeric = /^[a-zA-Z0-9\s.\n{}[\]]$/;
+                            if (alphanumeric.test(event.key)) {
+                                setCurrentIndex((currentIndex) => currentIndex + 1);
+                                setLastCorrect(false);
+                            }
+                            break;
+                    }
                 }
             }
         };
@@ -63,9 +85,9 @@ Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendiss
         return () => {
             document.removeEventListener('keydown', handleKeyPress);
         };
-    }, [isActive, currentIndex, text]);
+    }, [isActive, currentIndex, text, gameType]);
 
-    const getHighlightedText = (currentIndex) => {
+    const getHighlightedTextStrict = (currentIndex) => {
         const correctText = text.slice(0, currentIndex);
         const currentChar = text[currentIndex + incorrectChars];
         const incorrectText = text.slice(currentIndex + (currentIndex > 0 ? 0 : incorrectChars), currentIndex + incorrectChars);
@@ -75,6 +97,24 @@ Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendiss
             <>
                 <span style={{ color: 'green' }}>{correctText}</span>
                 <span style={{ borderRadius: '0.5vh', backgroundColor: 'red' }}>{incorrectText}</span>
+                <span style={{ borderRadius: '0.5vh', backgroundColor: 'grey' }}>{currentChar}</span>
+                {remainingText}
+            </>
+        );
+    };
+
+    const getHighlightedTextEasy = (currentIndex) => {
+        const oldText = text.slice(0, currentIndex > 1 ? currentIndex - 1 : 0);
+        const prevChar = text[currentIndex - 1];
+        const currentChar = text[currentIndex];
+        const remainingText = text.slice(currentIndex + 1 + incorrectChars);
+
+        return (
+            <>
+                <span style={{ opacity: '0.6' }}>{oldText}</span>
+                <span style={lastCorrect ? { color: 'green' } : { color: 'red'}}>
+                    {prevChar}
+                </span>
                 <span style={{ borderRadius: '0.5vh', backgroundColor: 'grey' }}>{currentChar}</span>
                 {remainingText}
             </>
@@ -141,6 +181,16 @@ Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendiss
         setWPM(0);
     };
 
+    const handleGameType = (value) => {
+        setGameType(value);
+        setIsActive(false);
+        setSeconds(60);
+        setCurrentIndex(0);
+        setCorrectChars(0);
+        setIncorrectChars(0);
+        setWPM(0);
+    }
+
     return (
         <div className="container">
             <div className="counters">
@@ -152,13 +202,26 @@ Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendiss
                         <ClockIcon className="mr-2 h-8 w-8" /> {seconds}
                     </Badge>
                 }
-                <Badge variant="secondary" className="text-xl">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="game">{gameType}</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-72">
+                        <DropdownMenuLabel>Game difficulty</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuRadioGroup value={gameType} onValueChange={(value) => handleGameType(value)}>
+                            <DropdownMenuRadioItem value="Strict mode">Strict mode</DropdownMenuRadioItem>
+                            <DropdownMenuRadioItem value="Easy mode">Easy mode</DropdownMenuRadioItem>
+                        </DropdownMenuRadioGroup>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+                <Badge variant={wpm > 0 ? wpm > 40 ? "great" : "improve" : "secondary"} className="text-xl">
                     <KeyboardIcon className="mr-2 h-8 w-8" /> {wpm} WPM
                 </Badge>
             </div>
             <div className="sentences">
                 <p>
-                    {getHighlightedText(currentIndex)}
+                    {gameType === 'Strict mode' ? getHighlightedTextStrict(currentIndex) : getHighlightedTextEasy(currentIndex)}
                 </p>
             </div>
             <div className="buttons">
@@ -178,11 +241,11 @@ Facilisi tempor a sociosqu purus odio condimentum in nascetur, rutrum suspendiss
             </div>
             {seconds === 0 
                 ? <div className="finish">
-                    <Alert>
-                        <RocketIcon className="h-6 w-6" />
+                    <Alert variant={wpm > 40 ? "great" : "improve"}>
+                        <RocketIcon className="h-8 w-8" />
                         <AlertTitle>Heads up!</AlertTitle>
                         <AlertDescription>
-                            Your score was {wpm} WPM!.
+                            Your score was {wpm} WPM... {wpm > 40 ? "Incredible work!" : "Keep working!"}
                         </AlertDescription>
                     </Alert>
                 </div>

@@ -19,6 +19,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-yellow-200  hover:border-pink-300",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        game: "hover:bg-yellow-200 text-2xl font-bold text-white/80 hover:text-black/80"
       },
       size: {
         default: "h-9 px-4 py-2",
