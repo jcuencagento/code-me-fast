@@ -17,8 +17,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         game: "hover:bg-yellow-200 text-2xl font-bold text-white/80 hover:text-black/80",
-        improve: "bg-orange-200 border-orange-200 hover:bg-orange-200/80",
-        great: "bg-green-400 border-green-400 hover:bg-green-400/80",
+        bad: "bg-orange-200 border-orange-200 hover:bg-orange-200/80",
+        improve: "bg-green-400 border-green-400 hover:bg-green-400/80",
+        great: "bg-blue-500 border-blue-500 hover:bg-blue-500/80",
         wpm: "bg-secondary text-secondary-foreground shadow-sm",
       },
       size: {

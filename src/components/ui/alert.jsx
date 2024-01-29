@@ -10,8 +10,9 @@ const alertVariants = cva(
             variant: {
                 default: "bg-yellow-200 border-pink-300 text-foreground text-md",
                 destructive: "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
-                improve: "bg-orange-200 border-orange-200 hover:bg-orange-200/80",
-                great: "bg-green-400 border-green-400 hover:bg-green-400/80"
+                bad: "bg-orange-200 border-orange-200 hover:bg-orange-200/80",
+                improve: "bg-green-400 border-green-400 hover:bg-green-400/80",
+                great: "bg-blue-400 border-blue-400 hover:bg-blue-400/80"
             },
         },
         defaultVariants: {

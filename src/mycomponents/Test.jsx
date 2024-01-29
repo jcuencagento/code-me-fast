@@ -322,7 +322,7 @@ function Test () {
                     ? (
                         <HoverCard asChild>
                             <HoverCardTrigger asChild>
-                                <Button variant={wpm > 0 ? wpm > 40 ? "great" : "improve" : "wpm"} className="text-xl">
+                                <Button variant={wpm > 50 ? "great" : wpm > 25 ? "improve" : wpm > 0 ? "bad" : "wpm"} className="text-xl">
                                     <KeyboardIcon className="mr-2 h-8 w-8" /> {wpm} WPM
                                 </Button>
                             </HoverCardTrigger>
@@ -341,7 +341,7 @@ function Test () {
                     ) : (
                         <HoverCard asChild>
                             <HoverCardTrigger asChild>
-                                <Button variant={wpm > 0 ? "great" : "wpm"} className="text-xl">
+                                <Button variant={wpm > 0 ? "improve" : "wpm"} className="text-xl">
                                     <KeyboardIcon className="mr-2 h-8 w-8" /> {wpm} Chars
                                 </Button>
                             </HoverCardTrigger>
@@ -385,13 +385,13 @@ function Test () {
             </div>
             {seconds === 0
                 ? <div className="finish">
-                    <Alert variant={wpm > 40 ? "great" : "improve"}>
+                    <Alert variant={wpm > 50 ? "great" : wpm > 25 ? "improve" : "bad"}>
                         <RocketIcon className="h-8 w-8" />
                         <AlertTitle>Heads up!</AlertTitle>
                         {gameDuration !== 'Inf'
                             ? (
                                 <AlertDescription>
-                                    Your score was {wpm} WPM... {wpm > 40 ? "Incredible work!" : "Keep working!"}
+                                    Your score was {wpm} WPM... {wpm > 50 ? "Wow, typing masterclass!" : wpm > 25 ? "Nice!, keep working" : "Oh, you can do it better"}
                                 </AlertDescription>
                             ) : (
                                 <AlertDescription>
