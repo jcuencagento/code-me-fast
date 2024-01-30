@@ -1,8 +1,12 @@
 import React from 'react';
 
 import '../styles/Footer.css'
-import { GitHubLogoIcon, LinkedInLogoIcon, IdCardIcon, LockClosedIcon, CodeIcon } from "@radix-ui/react-icons";
+import Contact from './Contact';
+import Terms from './Terms';
+
+import { GitHubLogoIcon, LinkedInLogoIcon, CodeIcon } from "@radix-ui/react-icons";
 import { Button } from "../components/ui/button";
+
 
 function Footer () {
     const github_URL = 'https://github.com/jcuencagento';
@@ -11,12 +15,8 @@ function Footer () {
     return (
         <footer className="App-footer">
             <div className="contacts-left">
-                <Button variant="ghost" onClick={() => { window.open(linkedin_URL, '_blank') }}>
-                    <IdCardIcon className="mr-2 h-4 w-4" /> Contact  
-                </Button>
-                <Button variant="ghost" onClick={() => { window.open(linkedin_URL, '_blank') }}>
-                    <LockClosedIcon className="mr-2 h-4 w-4" /> Terms  
-                </Button>
+                <Contact />
+                <Terms />
                 <Button variant="ghost" onClick={() => { window.open(code_URL, '_blank') }}>
                     <CodeIcon className="mr-2 h-4 w-4" /> Code  
                 </Button>

@@ -7,7 +7,6 @@ import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../components/ui/hover-card";
-import { toast } from "sonner"
 
 import texts from '../assets/texts.json'
 
@@ -45,7 +44,6 @@ function Test () {
                                 setNextGameText(texts[gameTextType][Math.floor(Math.random() * 60)])
                                 setCurrentIndex(0);
                                 setIncorrectChars(0);
-                                toast('Finished!');
                             }
 
                         break;
