@@ -13,6 +13,13 @@
     padding: 0;
 }
 
+@media (max-width: 1420px) {
+    .App-header {
+        max-width: 90%;
+        justify-content: space-around;
+    }
+}
+
 /* App logo + name */
 .brand {
     display: flex;
@@ -30,6 +37,14 @@
 .brand .App-logo {
     height: 8vh;
     pointer-events: none;
+}
+
+@media (max-width: 1420px) {
+    .brand h1 {
+        color: #ffffff;
+        font-size: 4vh;
+        letter-spacing: -0.3vh;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -55,4 +70,29 @@
 
 .git-logo {
     height: 100%;
+}
+
+/* Leaderboard */
+.leaderboard {
+    height: 6vh;
+    width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaderboard p {
+    font-size: medium;
+    color: whitesmoke;
+}
+
+@media (max-width: 1420px) {
+    .leaderboard {
+        height: 6vh;
+        width: 50%;
+    }
+
+    .leaderboard p {
+        font-size: small;
+    }
 }

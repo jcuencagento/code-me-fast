@@ -58,7 +58,7 @@ function Test () {
                         break;
 
                         default:
-                            const alphanumeric = /^[a-zA-Z0-9\s.\n{}[\]]$/;
+                            const alphanumeric = /^[a-zA-Z0-9\s.'\n{}[\]]$/;
                             if (alphanumeric.test(event.key)) {
                                 setIncorrectChars((prevIncorrectChars) => prevIncorrectChars + 1);
                             }

@@ -17,6 +17,12 @@
     margin-top: 0.5vh;
 }
 
+.icon {
+    margin-right: 2vh;
+    height: 4vh;
+    width: 4vh;
+}
+
 .advises p {
     font-family: 'Courier New', monospace;
     color: #dcdcdc; 
@@ -26,6 +32,16 @@
 @media (max-width: 1420px) {
     .advises {
         padding: 10vh;
-        left: 10vh;
+        left: 2vh;
+    }
+    
+    .icon {
+        margin-right: 1.6vh;
+        height: 3vh;
+        width: 3vh;
+    }
+
+    .advises p {
+        font-size: 0.9em;
     }
 }
