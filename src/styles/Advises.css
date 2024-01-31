@@ -13,14 +13,16 @@
 
 .advise {
     display: flex;
+    align-items: center;
+    justify-content: left;
     color: dodgerblue;
     margin-top: 0.5vh;
 }
 
 .icon {
     margin-right: 2vh;
-    height: 4vh;
-    width: 4vh;
+    height: 3vh;
+    width: 3vh;
 }
 
 .advises p {
@@ -37,8 +39,8 @@
     
     .icon {
         margin-right: 1.6vh;
-        height: 3vh;
-        width: 3vh;
+        height: 2vh;
+        width: 2vh;
     }
 
     .advises p {

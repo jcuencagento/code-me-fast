@@ -1,7 +1,9 @@
 import React from 'react';
 
 import '../styles/Header.css'
+import Theme from './Theme';
 import logo from '../logo.svg';
+
 import { AvatarIcon } from "@radix-ui/react-icons"
 
 function Header () {
@@ -18,6 +20,9 @@ function Header () {
             {/* <Button className="button-github" variant="ghost" onClick={() => { window.open(github_URL, '_blank') }}>
                 <GitHubLogoIcon className="mr-2 h-4 w-4" /> Login GitHub
             </Button> */}
+            <div className="theme">
+                <Theme />
+            </div>
         </header>
     )
 }
