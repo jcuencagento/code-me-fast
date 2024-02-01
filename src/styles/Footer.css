@@ -1,5 +1,5 @@
 /* App footer */
-.App-footer {
+.App-footer-dark {
     min-height: 10vh;
     max-width: 80%;
     display: flex;
@@ -8,6 +8,44 @@
     justify-content: space-around;
     font-size: calc(10px + 2vmin);
     color: white;
+    margin: auto;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 2.3vh;
+    font-weight: 500;
+}
+
+.App-footer-light {
+    min-height: 10vh;
+    max-width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: calc(10px + 2vmin);
+    color: #282c34;
+    margin: auto;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 2.3vh;
+    font-weight: 500;
+}
+
+.App-footer-neutral {
+    min-height: 10vh;
+    max-width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: calc(10px + 2vmin);
+    color: rgb(71, 42, 9);
     margin: auto;
     padding: 0;
     position: absolute;

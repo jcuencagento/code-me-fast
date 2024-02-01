@@ -13,7 +13,7 @@ import { Label } from "../components/ui/label"
 import { toast } from "sonner"
 
  
-function Contact() {
+function Theme ({ setTheme }) {
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -27,7 +27,7 @@ function Contact() {
                     <DialogDescription>More themes to come...</DialogDescription>
                 </DialogHeader>
                 <div className="flex items-center justify-between">
-                    <Label htmlFor="light-theme" className="text-md font-bold">Dark theme</Label>
+                    <Label htmlFor="dark-theme" className="text-md font-bold">Dark theme</Label>
                     <div className="flex items-center gap-4">
                         <div className="flex p-1 gap-2 bg-gray-300 border border-black rounded-lg">
                             <div className="circle bg-gray-800 border border-black h-5 w-5 rounded-full"></div>
@@ -39,7 +39,7 @@ function Contact() {
                                 type="submit"
                                 variant="bad"
                                 onClick={() => {
-                                    navigator.clipboard.writeText('jcuencagento@gmail.com');
+                                    setTheme('dark');
                                     toast('Dark theme activated!');
                                 }}>
                                 <span className="sr-only">Dark Theme</span>
@@ -61,7 +61,7 @@ function Contact() {
                                 type="submit"
                                 variant="bad"
                                 onClick={() => {
-                                    navigator.clipboard.writeText('jcuencagento@gmail.com');
+                                    setTheme('light');
                                     toast('Light theme activated!');
                                 }}>
                                 <span className="sr-only">Light Theme</span>
@@ -83,7 +83,7 @@ function Contact() {
                                 type="submit"
                                 variant="bad"
                                 onClick={() => {
-                                    navigator.clipboard.writeText('jcuencagento@gmail.com');
+                                    setTheme('neutral');
                                     toast('Neutral theme activated!');
                                 }}>
                                 <span className="sr-only">Neutral Theme</span>
@@ -97,4 +97,4 @@ function Contact() {
     );
 };
 
-export default Contact;
+export default Theme;

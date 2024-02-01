@@ -1,6 +1,22 @@
 /* Global App style */
-.App {
+.App-dark {
     background-color: #282c34;
+    min-height: 100vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.App-light {
+    background-color: #dde8fd;
+    min-height: 100vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.App-neutral {
+    background-color: #dcbec4;
     min-height: 100vh;
     text-align: center;
     align-items: center;

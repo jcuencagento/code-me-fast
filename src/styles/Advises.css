@@ -1,4 +1,4 @@
-.advises {
+.advises-dark {
     position: absolute;
     bottom: 0;
     left: 35vh;
@@ -11,11 +11,53 @@
     align-items: left;
 }
 
-.advise {
+.advises-light {
+    position: absolute;
+    bottom: 0;
+    left: 35vh;
+    max-width: 100%;
+    padding: 12vh;
+    display: flex;
+    flex-direction: column;
+    color: rgb(1, 128, 255);
+    margin: 0 auto;
+    align-items: left;
+}
+
+.advises-neutral {
+    position: absolute;
+    bottom: 0;
+    left: 35vh;
+    max-width: 100%;
+    padding: 12vh;
+    display: flex;
+    flex-direction: column;
+    color: rgb(18, 61, 105);
+    margin: 0 auto;
+    align-items: left;
+}
+
+.advise-dark {
     display: flex;
     align-items: center;
     justify-content: left;
     color: dodgerblue;
+    margin-top: 0.5vh;
+}
+
+.advise-light {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: rgb(0, 128, 255);
+    margin-top: 0.5vh;
+}
+
+.advise-neutral {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: rgb(18, 61, 105);
     margin-top: 0.5vh;
 }
 
@@ -25,14 +67,31 @@
     width: 3vh;
 }
 
-.advises p {
+.advises-dark p {
     font-family: 'Courier New', monospace;
     color: #dcdcdc; 
     font-size: 1.2em;
+    font-weight: 600;
+}
+
+.advises-light p {
+    font-family: 'Courier New', monospace;
+    color: #071f06; 
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.advises-neutral p {
+    font-family: 'Courier New', monospace;
+    color: rgb(61, 37, 9);
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 @media (max-width: 1420px) {
-    .advises {
+    .advises-dark,
+    .advises-light,
+    .advises-neutral {
         padding: 10vh;
         left: 2vh;
     }
@@ -43,7 +102,15 @@
         width: 2vh;
     }
 
-    .advises p {
+    .advises-dark p {
+        font-size: 0.9em;
+    }
+
+    .advises-light p {
+        font-size: 0.9em;
+    }
+
+    .advises-neutral p {
         font-size: 0.9em;
     }
 }

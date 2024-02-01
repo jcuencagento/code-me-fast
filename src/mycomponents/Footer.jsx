@@ -8,12 +8,14 @@ import { GitHubLogoIcon, LinkedInLogoIcon, CodeIcon } from "@radix-ui/react-icon
 import { Button } from "../components/ui/button";
 
 
-function Footer () {
+function Footer ({ theme }) {
     const github_URL = 'https://github.com/jcuencagento';
     const linkedin_URL = 'https://www.linkedin.com/in/javiercuencagento/';
     const code_URL = 'https://github.com/jcuencagento/code-me-fast';
+    const color_name = theme === 'dark'
+        ? 'white' : theme === 'light' ? '#282c34' : 'rgb(71, 42, 9)'
     return (
-        <footer className="App-footer">
+        <footer className={`App-footer-${theme}`}>
             <div className="contacts-left">
                 <Contact />
                 <Terms />
@@ -21,7 +23,7 @@ function Footer () {
                     <CodeIcon className="mr-2 h-4 w-4" /> Code  
                 </Button>
             </div>
-            <p style={{ color: 'white', fontSize: '0.7em' }}> Made with 🧠 by Javier Cuenca Gento </p>
+            <p style={{ color: color_name, fontSize: '0.7em', fontWeight: '700' }}> Made with 🧠 by Javier Cuenca Gento </p>
             <div className="links-right">
                 <Button variant="ghost" onClick={() => { window.open(linkedin_URL, '_blank') }}>
                     <LinkedInLogoIcon className="mr-2 h-4 w-4" /> Linkedin  

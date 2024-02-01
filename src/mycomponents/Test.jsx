@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Test.css'
 
 import { PlayIcon, ResetIcon, ClockIcon, RocketIcon, KeyboardIcon, StopIcon, StarFilledIcon } from "@radix-ui/react-icons";
+import confetti from 'canvas-confetti';
  
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
@@ -32,10 +33,21 @@ function Test () {
                 event.preventDefault();
             }
 
-            if (isActive) {
+            if (isActive && seconds !== 0) {
                 if (gameType === 'Strict mode') {
                     const currentChar = gameText[currentIndex];
                     switch (event.key) {
+                        case ' ':
+                            if (currentIndex !== 0) {
+                                if (currentChar === ' ') {
+                                    setTotalCorrectChars((prevTotalCorrectChars) => prevTotalCorrectChars + 1);
+                                    setCurrentIndex((currentIndex) => currentIndex + 1);
+                                } else {
+                                    setIncorrectChars((prevIncorrectChars) => prevIncorrectChars + 1);
+                                }
+                            }
+                        break;
+
                         case currentChar:
                             setTotalCorrectChars((prevTotalCorrectChars) => prevTotalCorrectChars + 1);
                             setCurrentIndex((currentIndex) => currentIndex + 1);
@@ -105,7 +117,7 @@ function Test () {
         return () => {
             document.removeEventListener('keydown', handleKeyPress);
         };
-    }, [isActive, currentIndex, gameText, gameType, gameTextType, nextGameText]);
+    }, [isActive, currentIndex, gameText, gameType, gameTextType, nextGameText, seconds]);
 
     /* Texts formatting */
     const getHighlightedTextStrict = (currentIndex) => {
@@ -200,7 +212,21 @@ function Test () {
         };
 
         calculateWPM();
-    }, [totalCorrectChars, seconds, gameDuration]);
+    }, [totalCorrectChars, seconds, gameDuration, isActive, wpm]);
+
+    /* Confetti */
+    useEffect(() => {
+        if (!isActive && wpm > 60) {
+            confetti({
+                particleCount: 650,
+                spread: 120,
+                origin: {
+                    x: 0.5,
+                    y: 0.7
+                }
+            });
+        }
+    }, [isActive, wpm])
 
     /* Buttons handlers */
     const startAgainTimer = () => {
