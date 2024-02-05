@@ -11,7 +11,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "../components/ui/
 
 import texts from '../assets/texts.json'
 
-function Test () {
+function Test ({ theme }) {
     /* Use States */
     const [gameType, setGameType] = useState('Strict mode');
     const [gameDuration, setGameDuration] = useState(60);
@@ -316,7 +316,7 @@ function Test () {
                 </DropdownMenu>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="game">{gameType}</Button>
+                        <Button variant={theme === "dark" ? "game_dark" : theme === "light" ? "game_light" : "game_neutral"}>{gameType}</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-72">
                         <DropdownMenuLabel>Game difficulty</DropdownMenuLabel>
@@ -329,7 +329,7 @@ function Test () {
                 </DropdownMenu>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="game">{gameTextType === 'randomTexts' ? 'Random text' : gameTextType}</Button>
+                        <Button variant={theme === "dark" ? "game_dark" : theme === "light" ? "game_light" : "game_neutral"}>{gameTextType === 'randomTexts' ? 'Random text' : gameTextType}</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-72">
                         <DropdownMenuLabel>Game type</DropdownMenuLabel>
@@ -390,20 +390,20 @@ function Test () {
             </div>
             <div className="buttons">
                 {seconds === 0 || currentIndex === gameText.length
-                    ? <Button variant="secondary" onClick={startAgainTimer}>
+                    ? <Button variant={theme === "dark" ? "button_dark" : theme === "light" ? "button_light" : "button_neutral"} onClick={startAgainTimer}>
                         <PlayIcon className="mr-2 h-5 w-5" /> START AGAIN
                     </Button>
                     : !isActive
-                    ? <Button variant="secondary" onClick={startTimer}>
+                    ? <Button variant={theme === "dark" ? "button_dark" : theme === "light" ? "button_light" : "button_neutral"} onClick={startTimer}>
                         <PlayIcon className="mr-2 h-5 w-5" /> START
                     </Button>
                     : gameDuration === 'Inf'
-                    ? <Button variant="secondary" onClick={stopTimer}>
+                    ? <Button variant={theme === "dark" ? "button_dark" : theme === "light" ? "button_light" : "button_neutral"} onClick={stopTimer}>
                         <StopIcon className="mr-2 h-5 w-5" /> STOP
                     </Button>
                     : null
                 }
-                <Button variant="secondary" onClick={resetTimer}>
+                <Button variant={theme === "dark" ? "button_dark" : theme === "light" ? "button_light" : "button_neutral"} onClick={resetTimer}>
                     <ResetIcon className="mr-2 h-5 w-5" /> RESET
                 </Button>
             </div>

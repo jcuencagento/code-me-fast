@@ -17,7 +17,7 @@ function Theme ({ setTheme }) {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="ghost">
+                <Button variant="ghost_header">
                     <LightningBoltIcon className="mr-2 h-4 w-4" /> Theme
                 </Button>
             </DialogTrigger>
@@ -71,7 +71,7 @@ function Theme ({ setTheme }) {
                     </div>
                 </div>
                 <div className="flex items-center justify-between">
-                    <Label htmlFor="light-theme" className="text-md font-bold">Neutral theme</Label>
+                    <Label htmlFor="neutral-theme" className="text-md font-bold">Neutral theme</Label>
                     <div className="flex items-center gap-4">
                         <div className="flex p-1 gap-2 bg-gray-300 border border-black rounded-lg">
                             <div className="circle bg-taupe-400 border border-black h-5 w-5 rounded-full"></div>
