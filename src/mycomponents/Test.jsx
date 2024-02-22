@@ -3,7 +3,7 @@ import '../styles/Test.css'
 
 import { PlayIcon, ResetIcon, ClockIcon, RocketIcon, KeyboardIcon, StopIcon, StarFilledIcon } from "@radix-ui/react-icons";
 import confetti from 'canvas-confetti';
- 
+
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Button } from "../components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
@@ -25,7 +25,7 @@ function Test ({ theme }) {
     const [incorrectChars, setIncorrectChars] = useState(0);
     const [lastCorrect, setLastCorrect] = useState(true);
     const [wpm, setWPM] = useState(0);
-  
+
     /* Test logic */
     useEffect(() => {
         const handleKeyPress = (event) => {
@@ -88,7 +88,7 @@ function Test ({ theme }) {
                                 setCurrentIndex(0);
                                 setIncorrectChars(0);
                             }
- 
+
                         break;
 
                         default:
@@ -157,19 +157,17 @@ function Test ({ theme }) {
         return (
             <>
                 <span style={{ opacity: '0.6' }}>{oldText}</span>
-                <span style={lastCorrect ? { color: 'green' } : { color: 'red'}}>
-                    {prevChar}
-                </span>
+                <span style={lastCorrect ? { color: 'green' } : { color: 'red'}}>{prevChar}</span>
                 <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'pre-wrap' }}>
-                <span style={{ display: 'inline-block'}}>{currentChar}</span>
-                <span style={{
-                        position: 'absolute',
-                        left: '-1px',
-                        height: '100%',
-                        width: '0.4vh',
-                        background: 'dodgerblue',
-                        animation: 'blinking 1s infinite'
-                    }}/>
+                    <span style={{ display: 'inline-block'}}>{currentChar}</span>
+                    <span style={{
+                            position: 'absolute',
+                            left: '-1px',
+                            height: '100%',
+                            width: '0.4vh',
+                            background: 'dodgerblue',
+                            animation: 'blinking 1s infinite'
+                        }}/>
                 </span>
                 {remainingText}
                 <br />
@@ -216,7 +214,7 @@ function Test ({ theme }) {
 
     /* Confetti */
     useEffect(() => {
-        if (!isActive && wpm > 60) {
+        if (!isActive && wpm > 40) {
             confetti({
                 particleCount: 650,
                 spread: 120,
@@ -237,7 +235,7 @@ function Test ({ theme }) {
         setIncorrectChars(0);
         setWPM(0);
     };
-    
+
     const startTimer = () => {
         setIsActive(true);
         setCurrentIndex(0);
@@ -250,7 +248,7 @@ function Test ({ theme }) {
         setIsActive(false);
         setSeconds(0);
     };
-  
+
     const resetTimer = () => {
         setIsActive(false);
         setGameText(texts[gameTextType][Math.floor(Math.random() * 60)]);
@@ -342,7 +340,7 @@ function Test ({ theme }) {
                         </DropdownMenuRadioGroup>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                {gameDuration !== 'Inf' 
+                {gameDuration !== 'Inf'
                     ? (
                         <HoverCard asChild>
                             <HoverCardTrigger asChild>

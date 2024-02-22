@@ -14,8 +14,10 @@ function Header ({ theme, setTheme }) {
                 <h1> Code Me Fast </h1>
             </div>
             <div className={`leaderboard-${theme}`}>
-                <AvatarIcon className="mr-2 h-6 w-6" />
-                <p>Leaderboard and registering coming soon...</p>
+                <a href='https://donkey-code.vercel.app' rel="noreferrer" target="_blank" className={`leaderboard-${theme}`}>
+                    <AvatarIcon className="mr-2 h-6 w-6" />
+                    <p>Login, leaderboard and more in new web project!</p>
+                </a>
             </div>
             {/* <Button className="button-github" variant="ghost" onClick={() => { window.open(github_URL, '_blank') }}>
                 <GitHubLogoIcon className="mr-2 h-4 w-4" /> Login GitHub
